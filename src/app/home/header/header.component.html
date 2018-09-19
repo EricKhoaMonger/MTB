@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-sm-12 px-0" id="leftMenu">
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand d-flex align-items-center" routerLink="">
+          <img src="./../../../favicon.ico" alt="" class="img-fluid mr-3">
+          <span>MTB</span>
+        </a>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsableMenu"
+          aria-controls="collapsableMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsableMenu">
+          <ul class="navbar-nav mr-auto navUl">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="">HOME <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">CONTACT</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-right navUl">
+            <li class="nav-item" *ngIf="userInfo == null || userInfo == undefined ; else userGreets">
+              <a routerLink="/login" class="nav-link">
+                <i class="fa fa-user mr-3"></i>
+                <span>SIGN IN</span>
+              </a>
+            </li>
+            <ng-template #userGreets>
+              <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                  mdbWavesEffect>
+                  Hello {{ userInfo.HoTen }}
+                  <span class="caret"></span>
+                </a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">My Account</a>
+                  <div class="divider dropdown-divider"></div>
+                  <a class="dropdown-item waves-light" mdbWavesEffect (click)="userSignOut()">Sign Out</a>
+                </div>
+              </li>
+            </ng-template>
+            <li class="nav-item d-block d-md-none" id="bookNow">
+              <a href="#" class="nav-link">
+                <i class="fa fa-money mr-3"></i>
+                <span>BOOK NOW</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <button class="btn btn-warning col-md-2 d-none d-md-block m-0 px-1" id="bookBtn" #bookBtn>
+      <i class="fa fa-money mr-3"></i>
+      <span>BOOK NOW</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<ng-container *ngIf="!seatDetail.DaDat; else elseTemplate">
+  <button mdbBtn type="button" class="btn waves-effect p-2" [ngClass]="{'btn-success': isBeingChosen}" (click)="onChoosing()">{{seatDetail.STT}}</button>
+</ng-container>
+<ng-template #elseTemplate>
+        <button mdbBtn type="button" class="btn btn-danger p-2" disabled>{{seatDetail.STT}}</button>
+</ng-template>

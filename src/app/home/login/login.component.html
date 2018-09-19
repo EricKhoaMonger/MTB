@@ -1,0 +1,64 @@
+<div class="col-12 mx-auto">
+    <app-alerts></app-alerts>
+</div>
+<section class="form-elegant my-5">
+  <mdb-card class="animated wow fadeInUp" data-wow-delay="1s" data-wow-duration="0.5s">
+    <mdb-card-body class="mx-4">
+      <!--Header-->
+      <div class="text-center">
+        <h3 class="text-warning mb-md-5 mb-2">
+          <strong>Sign in</strong>
+        </h3>
+      </div>
+
+      <form [formGroup]="logInForm" (ngSubmit)="userLogIn(logInForm.value)">
+        <div class="md-form">
+          <input type="text" id="TaiKhoan" class="form-control" data-success=" " data-error="ID is REQUIRED" formControlName="TaiKhoan" mdbInputDirective>
+          <label for="TaiKhoan">Your Id</label>
+        </div>
+
+        <div class="md-form pb-md-3">
+          <input type="password" id="MatKhau" class="form-control" data-success=" " data-error="Password is REQUIRED" formControlName="MatKhau" mdbInputDirective>
+          <label for="MatKhau">Your password</label>
+          <p class="font-small text-warning d-flex justify-content-end mt-3">Forgot
+            <a href="#" class="text-warning ml-1"> Password?</a>
+          </p>
+        </div>
+        <div class="text-center mb-md-3">
+          <button [disabled]="!logInForm.valid" type="submit" mdbBtn color="warning" block="true" rounded="true"
+            class="z-depth-5" mdbWavesEffect>Sign
+            in</button>
+        </div>
+      </form>
+      <!--Body--> 
+
+
+      <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in with:</p>
+
+      <div class="row my-md-3 d-flex justify-content-center">
+        <!--Facebook-->
+        <button type="button" mdbBtn color="white" rounded="true" class="mr-md-3 z-depth-0 p-0 p-md-3"
+          mdbWavesEffect>
+          <i class="fa fa-facebook text-warning text-center"></i>
+        </button>
+        <!--Twitter-->
+        <button type="button" mdbBtn color="white" rounded="true" class="mr-md-3 z-depth-0 p-0 p-md-3"
+          mdbWavesEffect>
+          <i class="fa fa-twitter text-warning"></i>
+        </button>
+        <!--Google +-->
+        <button type="button" mdbBtn color="white" rounded="true" class="z-depth-0 p-0 p-md-3"
+          mdbWavesEffect>
+          <i class="fa fa-google-plus text-warning"></i>
+        </button>
+      </div>
+    </mdb-card-body>
+    <!--Footer-->
+    <div class="modal-footer mx-5 pt-3 mb-1">
+      <p class="font-small grey-text d-flex justify-content-end">Not a member?
+        <a routerLink="/signup" class="text-warning ml-1"> Sign Up</a>
+      </p>
+    </div>
+  </mdb-card>
+
+</section>

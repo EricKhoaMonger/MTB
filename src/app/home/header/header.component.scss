@@ -1,0 +1,34 @@
+@import './../../../assets/scss/_header.scss';
+
+#leftMenu {
+  background: $header-bg !important;
+
+  .navUl {
+    li {
+      a {
+        font-size: $fs !important;
+      }
+    }
+
+    #bookNow {
+      a {
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+  }
+}
+
+#bookBtn {
+  border-radius: unset !important;
+  color: white !important;
+
+  &:hover {
+    color: white;
+  }
+
+  span {
+    font-size: $fs!important;
+  }
+}

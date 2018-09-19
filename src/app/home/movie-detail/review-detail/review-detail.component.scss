@@ -1,0 +1,18 @@
+.inputVal{
+    display: none;
+}
+.fa{
+    color: #ff8800;
+    font-size: 30px;
+}
+.edit-icon{
+    font-size: 20px;
+    color:#111;
+
+    &:hover{
+        color: #ff8800;
+    }
+}
+.clickable{
+    cursor: pointer;
+}

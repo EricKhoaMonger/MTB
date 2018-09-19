@@ -1,0 +1,106 @@
+<div class="row flex-center p-5">
+  <div class="col-12 mb-4">
+    <div class="row">
+      <div class="col-md-5 info-area">
+        <p>
+          <b>Date: </b> {{ scheduleObj.NgayChieuGioChieu | date:short }}
+        </p>
+        <p>
+          <b>Theather ID: </b> {{ scheduleObj.MaRap }}
+        </p>
+        <p>
+          <b>Theather Name: </b> {{ scheduleObj.Rap.TenRap }}
+        </p>
+      </div>
+      <div class="col-md-7">
+
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="seats?.DanhSachGhe.length; else elseTemplate">
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-2 seat-item" *ngFor="let seat of seats?.DanhSachGhe">
+            <app-seat [seatDetail]="seat" (choosingSeats)="onChoosingSeats($event,seat)"></app-seat>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 p-0 mt-3 mt-md-0 pl-md-3">
+        <div class="jumbotron h-100 d-flex flex-column justify-content-between pb-3">
+          <div class="ticket-info">
+            <h2 class="h1 h1-responsive">{{ totalCost + totalComboCost | currency:'VND'}}</h2>
+            <div class="row">
+              <div class="col-4">
+                <p class="lead"><b>Seats: </b></p>
+              </div>
+              <div class="col-8 text-right">
+                <p class="lead">
+                  {{totalCost | currency:'VND'}}
+                </p>
+              </div>
+              <div class="col-12">
+                <span *ngFor="let item of onChoosingSeatsArr">
+                  {{item.MaGhe}},
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <p class="lead"><b>Combos: </b></p>
+              </div>
+              <div class="col-8 text-right">
+                <p class="lead">
+                  {{totalComboCost | currency:'VND'}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="client-info">
+            <p><b>Client's Info</b></p>
+            <p><b>Name: </b> {{localUser.HoTen}}</p>
+            <p><b>Email: </b> {{localUser.Email}}</p>
+            <p><b>Phone: </b> {{localUser.SoDT}}</p>
+          </div>
+
+          <div id="btn-group">
+            <a class="btn btn-info btn-lg waves-light d-block m-0 mb-2" role="button" mdbWavesEffect (click)="comboModal.show()">Buy
+              Combo</a>
+            <a class="btn btn-warning btn-lg waves-light d-block m-0" role="button" mdbWavesEffect (click)="confirmBooking()">Book</a>
+          </div>
+        </div>
+      </div>
+
+
+      <button type="button" mdbBtn color="primary" class="d-none relative waves-light" mdbWavesEffect> Launch demo
+        modal</button>
+    </div>
+
+  </ng-container>
+</div>
+<ng-template #elseTemplate>
+  <app-spinner-loading></app-spinner-loading>
+</ng-template>
+
+<!-- Modal for Combo -->
+<div mdbModal #comboModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="mycomboModalLabel"
+  aria-hidden="true" style="overflow-y: auto">
+  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info w-75 w-md-25" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="comboModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Choose Your Combo</h4>
+      </div>
+      <div class="modal-body">
+        <app-combos></app-combos>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="comboModal.hide()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="row align-items-center">
+    <div class="col-3">
+        <img [src]="combo.Hinh" alt="" style="width:80px">
+    </div>
+    <div class="col-md-6 order-last order-md-first">
+        <p class="lead">{{combo.Ten}}</p>
+        <p class="lead text-primary">{{combo.Gia}}</p>
+    </div>
+    <div class="col-9 col-md-3">
+      <a href="javascript:void(0)" (click)="RemoveItem()">
+          <i class="fa fa-minus"></i>
+      </a>
+      <input type="text"  class="w-25 mx-2" [value]="quantity">
+      <a href="javascript:void(0)" (click)="AddItem()">
+          <i class="fa fa-plus"></i>
+      </a>
+    </div>
+</div>

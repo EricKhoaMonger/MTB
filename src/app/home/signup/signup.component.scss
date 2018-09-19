@@ -1,0 +1,25 @@
+.form-elegant .font-small {
+  font-size: 0.8rem;
+}
+
+.inputVal {
+  visibility: hidden !important;
+}
+
+.counter-danger {
+  border-bottom: unset !important;
+  box-shadow: unset !important;
+}
+
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty {
+  border-bottom: 1px solid #F44336 !important;
+  box-shadow: 0 1px 0 0 #F44336 !important;
+}
+
+input.ng-valid.ng-touched,
+input.ng-valid.ng-dirty {
+  border-bottom: 1px solid #00c851 !important;
+  box-shadow: 0 1px 0 0 #00c851 !important;
+}
+

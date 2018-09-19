@@ -1,0 +1,37 @@
+<!-- Featured news -->
+<div class="single-news mb-lg-0 mb-4">
+
+  <!-- Image -->
+  <div class="view overlay rounded z-depth-1-half mb-4 featured-img-wrapper">
+    <img class="img-fluid" [src]="featuredItem.NewsList[0].HinhAnh" alt="Sample image">
+    <a>
+      <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+    </a>
+  </div>
+
+  <!-- Data -->
+  <div class="news-data d-flex justify-content-between">
+    <a href="#!" class="deep-orange-text">
+      <h6 class="font-weight-bold">
+        <ng-container [ngSwitch]="featuredItem.NewsType">
+          <span *ngSwitchCase="'break'"> <i class="fa fa-film pr-2"></i>News</span>
+          <span *ngSwitchCase="'review'"><i class="fa fa-pencil pr-2" ></i>Reviews</span>
+          <span *ngSwitchCase="'discount'"> <i class="fa fa-money pr-2" ></i>Discounts</span>
+        </ng-container>
+      </h6>
+    </a>
+    <p class="font-weight-bold dark-grey-text">
+      <i class="fa fa-clock-o pr-2"></i>{{featuredItem.NewsList[0].NgayPost}}</p>
+  </div>
+
+  <!-- Excerpt -->
+  <h3 class="font-weight-bold dark-grey-text mb-3">
+    <a>{{featuredItem.NewsList[0].TieuDe}}</a>
+  </h3>
+  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4">Sed ut perspiciatis unde voluptatem omnis iste natus error sit
+    voluptatem accusantium doloremque laudantium,
+    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae explicabo.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+
+</div>
+<!-- Featured news -->

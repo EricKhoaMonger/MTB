@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-11 col-md-8 py-4 px-3 mx-auto rounded bg-light" [ngClass]="{'clickable': localUser != null}" (click)="localUser ? thoughtModal.show() : null">
+    <div class="row">
+      <div class="col-3 col-lg-1 user-profile-pic">
+        <img [src]="profilePic" alt="" class="img-fluid rounded rounded-circle border border-white">
+      </div>
+      <div class="col-9 col-lg-8 text-right">
+        <span *ngIf="localUser != null">Share your thoughts here...</span>
+        <span *ngIf="localUser == null">Please Sign In to Review</span>
+      </div>
+      <div class="col-lg-3 text-right">
+        <app-star-rated></app-star-rated>
+      </div>
+    </div>
+  </div>
+
+  <app-alerts></app-alerts>
+
+  <ng-container *ngFor="let thought of userThoughtsArr; let k = index">
+    <div class="col-11 col-md-8 py-4 px-3 mx-auto mt-3 rounded bg-light animated wow fadeInRight">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-3">
+              <img [src]="profilePic" alt="" class="img-fluid rounded rounded-circle border border-white">
+            </div>
+            <div class="col-md-9">
+              <span>
+                <b>{{ thought.userName }}</b>
+                <a class="ml-3" *ngIf="localUser != null && thought.userId == localUser.TaiKhoan && !thought.needEditting" (click)="editReview(thought,k)">
+                  <i class="fa fa-pencil edit-icon"></i>
+                </a>
+              </span>
+              <p class="lead" *ngIf="!thought.needEditting;else editInput">
+                {{ thought.thought }}
+              </p>
+              <ng-template #editInput>
+                <div class="form-inline">
+                  <input type="text" class="form-control" [value]="thought.thought" #updatedThought>
+                  <a class="ml-3" (click)="confirmEdit(thought, updatedThought.value)">
+                    <i class="fa fa-check edit-icon"></i>
+                  </a>
+                  <a class="ml-3" (click)="cancelEdit(thought)">
+                    <i class="fa fa-ban edit-icon"></i>
+                  </a>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 align-items-center text-left text-lg-right">
+          <span *ngFor="let item of thought.rates; let i=index">
+            <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+          </span>
+          <p class="lead">
+            {{ thought.date | dateCount}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <button class="btn" (click)="detele(k)">delete</button> -->
+  </ng-container>
+
+</div>
+
+
+<button #btnTriggerModal class="d-none" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
+  data-target="#basicExample" (click)="thoughtModal.show()" mdbWavesEffect>Launch Modal</button>
+
+<div mdbModal #thoughtModal="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img [src]="profilePic" alt="avatar" class="rounded-circle img-responsive">
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-1">
+
+        <h5 class="mt-1 mb-2 text-center">{{ localUser?.HoTen }}</h5>
+
+        <form #thoughtForm="ngForm" (ngSubmit)="PostThought(thoughtForm);thoughtForm.reset();thoughtModal.hide()">
+          <div class="md-form ml-0 mr-0">
+            <input type="text" id="thoughts" name="thoughts" ngModel class="form-control form-control-sm ml-0"
+              mdbInputDirective required>
+            <label for="thoughts" class="ml-0">Put your thoughts here</label>
+          </div>
+          <div class="alert alert-danger" *ngIf="!thoughtForm.controls.thoughts.valid && (thoughtForm.controls.thoughts.touched || thoughtForm.controls.thoughts.dirty)">
+            <span>This is required in order to Submit</span>
+          </div>
+
+          <div class="md-form d-flex justify-content-end">
+            <app-star-rating></app-star-rating>
+          </div>
+
+          <div class="text-center mt-4">
+              <!-- [disabled]="!thoughtForm.valid" -->
+            <button [disabled]="!thoughtForm.valid" mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"
+              mdbWavesEffect>Post
+              <i class="fa fa-check ml-1"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

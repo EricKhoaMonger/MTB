@@ -1,0 +1,10 @@
+.background{
+    background: url('https://www.123phim.vn/app/assets/img/icons/backapp.jpg');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-position: center center;
+    
+    .body-height   {
+        min-height: calc(100vh - 58px - 220px);
+    }
+}

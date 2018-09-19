@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+.home-banner,
+.nowshowings-carousel,
+.comingsoons-carousel {
+  .owl-nav {
+
+    button.owl-prev,
+    button.owl-next,
+    button.owl-dot {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+
+      &:hover {
+        color: #ff8800;
+      }
+
+      span {
+        font-size: 100px;
+      }
+    }
+  }
+
+  .owl-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    button.owl-dot {
+      padding: 8px !important;
+      border-radius: 50%;
+      background: #eee;
+
+      &.active,
+      &:hover {
+        background: #ff8800;
+      }
+    }
+
+    button.owl-dot:not(:last-of-type) {
+      margin-right: 4px;
+    }
+  }
+}
+
+.nowshowings-carousel,
+.comingsoons-carousel {
+  .owl-nav {
+    button.owl-prev {
+      left: -40px;
+    }
+
+    button.owl-next {
+      right: -40px;
+    }
+  }
+}
+
+.dropdown {
+  .dropdown-menu {
+    border-radius: unset !important;
+    top: -3px !important;
+    left: -20px !important;
+  }
+}
+
+.alertsContainer {
+  position: unset !important;
+
+  .alertsRow {
+    margin-top: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 4fr !important;
+    position: unset !important;
+    box-shadow: unset !important;
+    border-radius: unset !important;
+    float: unset !important;
+    clear: unset !important;
+
+    &.error, &.success{
+      border: unset !important;
+    }
+
+    .iconpanel {
+      float: unset !important;
+      width: 100% !important;
+      height: 100% !important;
+      line-height: unset !important;
+
+      .material-icons {
+        padding-top: unset !important;
+      }
+    }
+
+    .messagepanel {
+      float: unset !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .closeicon {
+      display: none !important;
+    }
+  }
+
+}

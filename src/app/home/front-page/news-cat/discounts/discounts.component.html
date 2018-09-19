@@ -1,0 +1,18 @@
+<section class="magazine-section my-5">
+
+
+    <div class="row">
+  
+      <div class="col-lg-6 col-md-12">
+        <app-featured-news [featuredItem]="discountsList"></app-featured-news>
+      </div>
+  
+      <div class="col-lg-6 col-md-12">
+          <div class="single-news mb-4" *ngFor="let item of discountsList.NewsList | slice:1:5">
+        <app-news-item [newsItem]="item"></app-news-item>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  

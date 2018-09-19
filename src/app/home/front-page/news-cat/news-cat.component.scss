@@ -1,0 +1,14 @@
+.news-cat-titles {
+    h3 {
+      span {
+          transition: font-size 0.2s;
+          cursor: pointer;
+  
+        &.active,
+        &:hover {
+          font-size: 1.85rem;
+        }
+      }
+    }
+  }
+  

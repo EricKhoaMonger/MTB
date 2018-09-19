@@ -1,0 +1,39 @@
+<app-banner-detail [movieDetail]="movieDetail">
+  <a mdbBtn color="warning" mdbWavesEffect 
+  class="waves-light d-block mt-5 animated bounce infinite" 
+  style="width: fit-content"
+  pageScroll 
+  href="#contentDetail" 
+  [pageScrollDuration]="400"
+  [pageScrollOffset]="0"
+  (click)="showSchedules()"
+  >Buy Ticket</a>
+</app-banner-detail>
+
+
+<div class="container py-5" id="contentDetail">
+
+  <div class="row">
+
+    <div class="movie-detail-titles col-12">
+      <div class="btn-group w-100 justify-content-center flex-column flex-md-row">
+        <button class="btn btn-warning" [disabled]="detailStatus === 'schedule'" (click)="showSchedules()">Schedules</button>
+        <button class="btn btn-warning" [disabled]="detailStatus === 'pat'" (click)="showPAT()">Plot and Trailer</button>
+        <button class="btn btn-warning" [disabled]="detailStatus === 'review'" (click)="showReviews()">Reviews</button>
+      </div>
+    </div>
+  
+    <div class="mt-5 col-12">
+  
+      <app-schedule-detail *ngIf="detailStatus === 'schedule'" [movieInfo]="movieDetail"></app-schedule-detail>
+  
+      <app-plot-and-trailer *ngIf="detailStatus === 'pat'" [movieInfo]="movieDetail"></app-plot-and-trailer>
+  
+      <app-review-detail *ngIf="detailStatus === 'review'"></app-review-detail>
+  
+    </div>
+
+  </div>
+
+
+</div>

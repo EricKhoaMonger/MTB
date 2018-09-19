@@ -1,0 +1,32 @@
+<div class="img-wrapper rounded mb-3 view overlay flex-center">
+  <img [src]="movie?.HinhAnh" alt="" >
+
+  <div class="mask flex-center rgba-black-light flex-column d-none d-lg-flex">
+    <a data-lity [href]="movie.Trailer">
+      <i class="fa fa-play-circle text-warning display-4"></i>
+    </a>
+    <button mdbBtn type="button" color="warning" outline="true" class="rounded text-white" mdbWavesEffect [routerLink]="['/movie-detail',movie.MaPhim]">See Detail</button>
+  </div>
+
+</div>
+<div class="content-wrapper">
+  <div>
+    <a class="text-warning" [routerLink]="['/movie-detail',movie.MaPhim]">
+        <h5 class="title">{{ movie?.TenPhim }}</h5>
+    </a>
+    <hr class="horizontal-line">
+  </div>
+  <div class="detail row py-2 mb-1">
+    <div class="col-6">
+      <span class="lead detail-text">
+        120 minutes
+      </span>
+    </div>
+    <div class="col-6">
+      <span class="lead detail-text">
+        IMDB 8.1
+      </span>
+    </div>
+    <button class="btn btn-warning book-btn m-0" [routerLink]="['/movie-detail',movie.MaPhim]">Book Ticket</button>
+  </div>
+</div>

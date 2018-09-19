@@ -1,0 +1,5 @@
+<ul class="nav flex-column">
+  <li class="nav-item text-left" *ngFor="let item of popcorns">
+    <app-combo [combo]="item" (comboEvent)="popcornEvent($event,item)"></app-combo>
+  </li>
+</ul>

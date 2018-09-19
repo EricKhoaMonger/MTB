@@ -1,0 +1,6 @@
+<ul class="nav flex-column">
+    <li class="nav-item text-left" *ngFor="let item of drinks">
+      <app-combo [combo]="item" (comboEvent)="drinkEvent($event,item)"></app-combo>
+    </li>
+  </ul>
+  

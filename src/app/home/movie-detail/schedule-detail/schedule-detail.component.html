@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-8 mx-auto">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of schedule">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <span>Date: {{ item.NgayChieuGioChieu | date:'dd/MM hh:mm'}}</span>
+          </div>
+          <div class="col-lg-4">
+            <span>Schedule Id: {{ item.MaLichChieu }}</span>
+          </div>
+          <a mdbBtn type="button" color="warning" class="waves-light col-lg-2 m-0 py-3 px-2" mdbWavesEffect [routerLink]="['/booking',item.MaLichChieu]">Book
+            Ticket</a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="view intro" style="background-attachment: fixed; background-size: cover; background-position: center top; background-repeat:no-repeat; height: fit-content; min-height: calc(100vh - 58px)"
+  [ngStyle]="{'background-image': 'url(' + movieDetail?.HinhAnh  + ')'}">
+  <div class="full-bg-img mask rgba-black-strong">
+    <div class="container h-100 d-flex align-items-center">
+
+      <div class="row w-100">
+        <div class="col-md-6 animated fadeInLeft">
+          <img [src]="movieDetail?.HinhAnh" alt="" class="img-fluid ml-md-auto mb-3 mb-md-0 border border-warning d-none d-md-block">
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center animated fadeInRight">
+          <p class="lead text-light">{{ movieDetail?.NgayKhoiChieu | date:short }}</p>
+          <h3 class="text-warning"><b>{{ movieDetail?.TenPhim }}</b></h3>
+          <p class="lead text-light">120 minutes - IMAX/3D/2D</p>
+
+          <app-star-rated></app-star-rated>
+
+          <ng-content></ng-content>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
