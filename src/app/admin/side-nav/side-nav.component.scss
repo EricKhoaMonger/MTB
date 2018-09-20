@@ -1,0 +1,31 @@
+.nav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  mat-sidenav {
+    width: 200px;
+  }
+
+  mat-sidenav-content {
+
+    mat-toolbar {
+
+      #toggle-btn {
+        display: flex;
+        padding: 8px 19px 19px 19px !important;
+        min-width: unset;
+
+        #btn-child {
+          margin: auto;
+        }
+      }
+    }
+  }
+
+
+
+
+}

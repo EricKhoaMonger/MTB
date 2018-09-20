@@ -27,6 +27,9 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
@@ -49,10 +52,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -90,6 +95,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "src/styles.scss"
             ],
             "scripts": [],
