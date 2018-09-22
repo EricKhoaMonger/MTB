@@ -1,38 +1,61 @@
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-1 mt-3">
+      <button mat-fab color="primary" (click)="openCreateMovieDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="col-4 ml-auto mt-3">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for any thing here...">
+      </mat-form-field>
+    </div>
+  </div>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="MaPhim">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Movie ID </th>
-      <td mat-cell *matCellDef="let row"> {{row.MaPhim}} </td>
-    </ng-container>
+  <div class="row">
+    <div class="col-12">
+      <div class="mat-elevation-z8 table-wrapper">
+        <table mat-table [dataSource]="dataSource" matSort>
 
-    <!-- Title Column -->
-    <ng-container matColumnDef="TenPhim">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Movie Title </th>
-      <td mat-cell *matCellDef="let row"> {{row.TenPhim}} </td>
-    </ng-container>
+          <!-- ID Column -->
+          <ng-container matColumnDef="MaPhim">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Movie ID </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.MaPhim}} </td>
+          </ng-container>
 
-    <!-- Date Column -->
-    <ng-container matColumnDef="NgayKhoiChieu">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Released Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.NgayKhoiChieu}} </td>
-    </ng-container>
+          <!-- Title Column -->
+          <ng-container matColumnDef="TenPhim">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Movie Title </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.TenPhim}} </td>
+          </ng-container>
 
-    <!-- Rates Column -->
-    <ng-container matColumnDef="DanhGia">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rates </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.DanhGia}} </td>
-    </ng-container>
+          <!-- Rates Column -->
+          <ng-container matColumnDef="DanhGia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rates </th>
+            <td mat-cell *matCellDef="let movie"> {{movie.DanhGia}} </td>
+          </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns; let index=index">
-    </tr>
-  </table>
+          <!-- Actions Column -->
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let movie">
+              <div class="btn-group w-100 justify-content-center flex-column flex-md-row">
 
-  <mat-paginator [pageSizeOptions]="[15,30,45,100]"></mat-paginator>
+                <button mat-flat-button color="primary" (click)="openMovieDetailDialog(movie)">See Detail</button>
+                <button mat-flat-button color="warn" (click)="removeMovie(movie)">Remove</button>
+
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let i =index">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10,20,50,100]"></mat-paginator>
+      </div>
+    </div>
+  </div>
 </div>

@@ -14,6 +14,7 @@ import { AdminComponent } from '../admin/admin/admin.component';
 import { MoviesComponent } from '../admin/admin/movies/movies.component';
 import { UsersComponent } from '../admin/admin/users/users.component';
 import { MainDashComponent } from '../admin/admin/main-dash/main-dash.component';
+import { PipeModule } from '../pipe/pipe.module';
 
 const routes: Routes = [
   {
@@ -83,7 +84,6 @@ const routes: Routes = [
     pathMatch: 'full'
   }
 ]
-
 
 
 @NgModule({

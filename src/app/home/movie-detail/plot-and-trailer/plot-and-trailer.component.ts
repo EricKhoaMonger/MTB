@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-plot-and-trailer',
@@ -10,7 +9,7 @@ export class PlotAndTrailerComponent implements OnInit, OnChanges {
   @Input() movieInfo: any
 
   movieTrailer: string;
-  constructor(private AR: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
 

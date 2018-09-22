@@ -20,9 +20,7 @@ export class HeaderComponent implements OnInit {
     if (this.localUser == null) {
       this.userInfoGetter.username$.subscribe(
         (data: any) => {
-          this.userInfo = data;
-          console.log(this.userInfo);
-          
+          this.userInfo = data;          
         },
         (err: any) => console.log(err)
       )

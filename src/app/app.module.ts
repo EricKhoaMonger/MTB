@@ -9,6 +9,8 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MovieDialogComponent } from './admin/admin/movies/movie-dialog/movie-dialog.component';
+import { CreateMovieDialogComponent } from './admin/admin/movies/create-movie-dialog/create-movie-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatButtonModule,
     LayoutModule
   ],
+  entryComponents:[MovieDialogComponent,CreateMovieDialogComponent],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]

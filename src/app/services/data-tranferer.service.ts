@@ -15,6 +15,8 @@ export class DataTranfererService {
   private scheduleInfoData = new BehaviorSubject(null);
   private costData = new BehaviorSubject(null);
   private costsData = new BehaviorSubject(null);
+  private movieInfoAdminData = new BehaviorSubject(null);
+  private createdMovieData = new BehaviorSubject(null);
 
   username$ = this.usernameData.asObservable();
   stars$ = this.starData.asObservable();
@@ -22,6 +24,8 @@ export class DataTranfererService {
   scheduleInfo$ = this.scheduleInfoData.asObservable();
   cost$ = this.costData.asObservable();
   costs$ = this.costsData.asObservable();
+  movieInfoAdmin$ = this.movieInfoAdminData.asObservable();
+  createdMovie$ = this.createdMovieData.asObservable();
 
   constructor() { }
 
@@ -39,11 +43,17 @@ export class DataTranfererService {
   }
   transferCost(cost, type) {
     this.costData.next({
-      cost:cost,
-      type:type
+      cost: cost,
+      type: type
     })
   }
   transferCosts(costs) {
     this.costsData.next(costs)
+  }
+  transferMovieInfoAdmin(updatedMovie) {
+    this.movieInfoAdminData.next(updatedMovie)
+  }
+  transferCreatedMovieAdmin(createdMovie) {
+    this.createdMovieData.next(createdMovie)
   }
 }

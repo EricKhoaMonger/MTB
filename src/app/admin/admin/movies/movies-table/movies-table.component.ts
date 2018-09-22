@@ -1,54 +1,52 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Movie } from '../../../../models/movie'
 import { MovieService } from '../../../../services/movie.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
+import { DataTranfererService } from '../../../../services/data-tranferer.service';
+import { CreateMovieDialogComponent } from '../create-movie-dialog/create-movie-dialog.component'
 
 @Component({
   selector: 'app-movies-table',
   templateUrl: './movies-table.component.html',
   styleUrls: ['./movies-table.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed, void', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('* <=> *', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 export class MoviesTableComponent implements OnInit {
-  displayedColumns: string[] = ['MaPhim', 'TenPhim', 'NgayKhoiChieu', 'DanhGia'];
+  displayedColumns: string[] = ['MaPhim', 'TenPhim', 'DanhGia', 'Action'];
   dataSource: MatTableDataSource<Movie>;
+  updatedMovie: Movie
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private movieService: MovieService) {
-    // Create 100 users
-    // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-  }
+  constructor(
+    private movieService: MovieService,
+    public dialog: MatDialog,
+    private dataReceiver: DataTranfererService,
+    private createdMovieReceiver: DataTranfererService
+  ) { }
 
   ngOnInit() {
     this.movieService.getNowShowings().subscribe(
       movies => {
-        console.log(movies);
-        
-        this.dataSource = new MatTableDataSource(
-          movies.map(movie => {
-            return {
-              MaPhim: movie.MaPhim,
-              TenPhim: movie.TenPhim,
-              NgayKhoiChieu: movie.NgayKhoiChieu,
-              DanhGia: movie.DanhGia
-            }
-          })
-        )
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.loadData(movies)
       }
     )
+
+    this.dataReceiver.movieInfoAdmin$.subscribe(
+      updatedMovie => {
+        if (updatedMovie == null) return
+
+        this.updatedMovie = updatedMovie
+      }
+    )
+  }
+
+  loadData(array: Array<any>) {
+    this.dataSource = new MatTableDataSource(array)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -58,18 +56,51 @@ export class MoviesTableComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openMovieDetailDialog(movie) {
+    console.log(movie)
+    
+    let dialogRef = this.dialog.open(MovieDialogComponent, { data: movie });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'updated') {
+        let outdatedMovieIndex = this.dataSource.filteredData.indexOf(movie)
+
+        this.dataSource.data.splice(outdatedMovieIndex, 1, this.updatedMovie)
+
+        this.loadData(this.dataSource.data)
+      }
+    });
+  }
+
+  removeMovie(movie) {
+
+    let movieIndex = this.dataSource.filteredData.indexOf(movie)
+
+    this.movieService.removeMovie(movie.MaPhim).subscribe(
+      res => {
+        if (res === 'Xóa phim thành công!') {
+          this.dataSource.data.splice(movieIndex, 1)
+
+          this.loadData(this.dataSource.data)
+        }
+      }
+    )
+  }
+
+  openCreateMovieDialog() {
+    let dialogRef = this.dialog.open(CreateMovieDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'created') {
+
+        this.createdMovieReceiver.createdMovie$.subscribe(
+          movie => {
+            this.dataSource.data.unshift(movie)
+            this.loadData(this.dataSource.data)
+          }
+        )
+      }
+    });
+  }
 }
-
-/** Builds and returns a new User. */
-// function createNewUser(id: number): Movie {
-//   const name =
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-//   };
-// }

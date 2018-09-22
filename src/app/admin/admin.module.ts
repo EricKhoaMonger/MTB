@@ -14,7 +14,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -25,11 +26,17 @@ import { MainDashComponent } from './admin/main-dash/main-dash.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UsersTableComponent } from './admin/users/users-table/users-table.component';
 import { MoviesTableComponent } from './admin/movies/movies-table/movies-table.component';
+import { MovieDialogComponent } from './admin/movies/movie-dialog/movie-dialog.component';
+import { PipeModule } from '../pipe/pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateMovieDialogComponent } from './admin/movies/create-movie-dialog/create-movie-dialog.component';
 
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,    
+    ReactiveFormsModule,
+    PipeModule,
     RouterModule,
     MatSidenavModule,
     MatButtonModule,
@@ -44,9 +51,10 @@ import { MoviesTableComponent } from './admin/movies/movies-table/movies-table.c
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
-  declarations: [AdminComponent, SideNavComponent, MoviesComponent, UsersComponent, MainDashComponent, UsersTableComponent, MoviesTableComponent],
+  declarations: [AdminComponent, SideNavComponent, MoviesComponent, UsersComponent, MainDashComponent, UsersTableComponent, MoviesTableComponent, MovieDialogComponent, CreateMovieDialogComponent],
   exports: [AdminComponent, SideNavComponent, MoviesComponent, UsersComponent]
 })
 export class AdminModule { }

@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Create Movie Form</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eos molestiae illo quia minima cum iusto odit praesentium quibusdam.</p>
+        <form [formGroup]="createMovieFormGroup" (ngSubmit)="createMovie(createMovieFormGroup.value, file.files)">
+
+          <input class="form-control mb-2" formControlName="TenPhim" placeholder="Movie Title">
+          <input class="form-control mb-2" formControlName="NgayKhoiChieu" placeholder="Released Date">
+          <input class="form-control mb-2" formControlName="DanhGia" placeholder="Reviews">
+          <input class="form-control mb-2" formControlName="Trailer" placeholder="Trailer">
+          <input class="mb-2" type="file" #file>
+          <textarea class="form-control h-100" formControlName="MoTa" placeholder="Plot"></textarea>
+
+          <div class="col-12">
+            <mat-dialog-actions align="end">
+              <button type="submit" mat-raised-button color="primary">Create</button>
+              <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
+            </mat-dialog-actions>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
