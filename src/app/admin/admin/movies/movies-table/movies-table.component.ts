@@ -58,7 +58,6 @@ export class MoviesTableComponent implements OnInit {
   }
 
   openMovieDetailDialog(movie) {
-    console.log(movie)
     
     let dialogRef = this.dialog.open(MovieDialogComponent, { data: movie });
 

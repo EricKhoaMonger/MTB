@@ -3,8 +3,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eos molestiae illo quia minima cum iusto odit praesentium quibusdam.</p>
-        <form [formGroup]="createMovieFormGroup" (ngSubmit)="createMovie(createMovieFormGroup.value, file.files)">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi eos molestiae illo quia minima cum iusto odit
+          praesentium quibusdam.</p>
+        <form [formGroup]="createMovieFormGroup">
 
           <input class="form-control mb-2" formControlName="TenPhim" placeholder="Movie Title">
           <input class="form-control mb-2" formControlName="NgayKhoiChieu" placeholder="Released Date">
@@ -14,13 +15,14 @@
           <textarea class="form-control h-100" formControlName="MoTa" placeholder="Plot"></textarea>
 
           <div class="col-12">
-            <mat-dialog-actions align="end">
-              <button type="submit" mat-raised-button color="primary">Create</button>
-              <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
-            </mat-dialog-actions>
           </div>
         </form>
       </div>
     </div>
   </div>
 </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button type="button" mat-raised-button color="primary" (click)="createMovie(createMovieFormGroup.value, file.files)">Create</button>
+  <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
+</mat-dialog-actions>

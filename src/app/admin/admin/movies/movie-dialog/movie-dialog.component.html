@@ -8,7 +8,7 @@
       <img [src]="data.HinhAnh" alt="" class="img-fluid">
     </div>
   </div>
-  <form [formGroup]="movieFormGroup" (ngSubmit)="confirmEditting(movieFormGroup.value, file?.files)">
+  <form [formGroup]="movieFormGroup" >
     <div class="row">
       <div class="col-12 information">
         <div class="row align-items-center">
@@ -55,14 +55,15 @@
     </div>
 
     <div class="col-12 mt-5">
-      <mat-dialog-actions align="end">
-        <button type="button" mat-raised-button color="primary" (click)="editMovie(data)" [hidden]="needEditting">Edit</button>
-        <button type="submit" mat-raised-button color="primary" [hidden]="!needEditting">Update</button>
-        <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
-      </mat-dialog-actions>
     </div>
   </form>
-
-
-
+  
+  
+  
 </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button type="button" mat-raised-button color="primary" (click)="editMovie(data)" [hidden]="needEditting">Edit</button>
+  <button type="button" mat-raised-button color="primary" (click)="confirmEditting(movieFormGroup.value, file?.files)" [hidden]="!needEditting" >Update</button>
+  <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
+</mat-dialog-actions>
