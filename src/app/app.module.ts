@@ -11,6 +11,7 @@ import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButt
 import { LayoutModule } from '@angular/cdk/layout';
 import { MovieDialogComponent } from './admin/admin/movies/movie-dialog/movie-dialog.component';
 import { CreateMovieDialogComponent } from './admin/admin/movies/create-movie-dialog/create-movie-dialog.component';
+import { AlertDialogComponent } from './admin/admin/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { CreateMovieDialogComponent } from './admin/admin/movies/create-movie-di
     MatButtonModule,
     LayoutModule
   ],
-  entryComponents:[MovieDialogComponent,CreateMovieDialogComponent],
+  entryComponents:[MovieDialogComponent,CreateMovieDialogComponent,AlertDialogComponent],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]

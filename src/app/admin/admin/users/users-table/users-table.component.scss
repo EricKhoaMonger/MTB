@@ -1,0 +1,23 @@
+.search-area {
+    display: flex;
+  
+    .mat-form-field {
+      width: fit-content !important;
+      margin-left: auto;
+    }
+  }
+  
+  table {
+    width: 100%;
+  
+    td,
+    th {
+      width: 25%;
+    }
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  

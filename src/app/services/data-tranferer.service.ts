@@ -17,6 +17,8 @@ export class DataTranfererService {
   private costsData = new BehaviorSubject(null);
   private movieInfoAdminData = new BehaviorSubject(null);
   private createdMovieData = new BehaviorSubject(null);
+  private userInfoData = new BehaviorSubject(null);
+  private boolData = new BehaviorSubject(null);
 
   username$ = this.usernameData.asObservable();
   stars$ = this.starData.asObservable();
@@ -26,6 +28,8 @@ export class DataTranfererService {
   costs$ = this.costsData.asObservable();
   movieInfoAdmin$ = this.movieInfoAdminData.asObservable();
   createdMovie$ = this.createdMovieData.asObservable();
+  userInfo$ = this.userInfoData.asObservable();
+  bool$ = this.boolData.asObservable();
 
   constructor() { }
 
@@ -55,5 +59,11 @@ export class DataTranfererService {
   }
   transferCreatedMovieAdmin(createdMovie) {
     this.createdMovieData.next(createdMovie)
+  }
+  transferUserInfo(userInfo) {
+    this.userInfoData.next(userInfo)
+  }
+  transferBool(bool) {
+    this.boolData.next(bool)
   }
 }

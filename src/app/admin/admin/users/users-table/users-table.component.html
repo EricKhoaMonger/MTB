@@ -1,25 +1,60 @@
-<div class="mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-1 mt-3">
+      <button mat-fab color="primary" routerLink="add">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="col-4 ml-auto mt-3">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for any thing here...">
+      </mat-form-field>
+    </div>
+  </div>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
-    </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <div class="row">
+    <div class="col-12">
+      <div class="mat-elevation-z8 table-wrapper">
+        <table mat-table [dataSource]="dataSource" matSort>
 
-  <mat-paginator #paginator
-    [length]="dataSource.data.length"
-    [pageIndex]="0"
-    [pageSize]="50"
-    [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
+          <!-- ID Column -->
+          <ng-container matColumnDef="TaiKhoan">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> User ID </th>
+            <td mat-cell *matCellDef="let user"> {{user.TaiKhoan }} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="HoTen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> User Name </th>
+            <td mat-cell *matCellDef="let user"> {{user.HoTen}} </td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let user"> {{user.Email}} </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let user">
+              <div class="btn-group w-100 justify-content-center flex-column flex-md-row">
+
+                <button mat-flat-button color="primary" (click)="seeUserDetail(user)">See Detail</button>
+
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let i =index">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10,20,40]"></mat-paginator>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataTranfererService } from '../../../../services/data-tranferer.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { DataTranfererService } from '../../../../services/data-tranferer.servic
   styleUrls: ['./drinks.component.scss']
 })
 export class DrinksComponent implements OnInit {
-  @Output() cost = new EventEmitter();
 
   public drinks: any[] = [
     {
@@ -55,7 +54,5 @@ export class DrinksComponent implements OnInit {
       .reduce((acc, cur) => acc + cur, 0)
 
       this.drinkTransferer.transferCost(this.drinkCost,'drink')
-      // this.cost.emit(this.drinkCost)
-
   }
 }

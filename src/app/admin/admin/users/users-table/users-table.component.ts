@@ -1,21 +1,53 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { UsersTableDataSource } from './users-table-datasource';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material'
+import { User } from '../../../../models/user';
+import { UserService } from '../../../../services/user.service';
+import { DataTranfererService } from '../../../../services/data-tranferer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.css']
+  styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  dataSource: UsersTableDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  dataSource: MatTableDataSource<User>
+  displayedColumns: string[] = ['TaiKhoan', 'HoTen', 'Email', 'Action']
+
+  @ViewChild(MatPaginator) paginator: MatPaginator
+  @ViewChild(MatSort) sort: MatSort
+
+  constructor(
+    private userService: UserService,
+    private dataTransferer: DataTranfererService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.dataSource = new UsersTableDataSource(this.paginator, this.sort);
+    this.userService.getUsersList().subscribe(
+      users => this.loadData(users)
+    )
   }
+
+  loadData(array: Array<any>) {
+    this.dataSource = new MatTableDataSource(array)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
+  seeUserDetail(user: User) {
+    this.dataTransferer.transferUserInfo(user)
+    this.router.navigate([this.router.url + '/' + user.TaiKhoan])
+  }
+
+
 }

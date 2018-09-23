@@ -15,6 +15,9 @@ import { MoviesComponent } from '../admin/admin/movies/movies.component';
 import { UsersComponent } from '../admin/admin/users/users.component';
 import { MainDashComponent } from '../admin/admin/main-dash/main-dash.component';
 import { PipeModule } from '../pipe/pipe.module';
+import { UserDetailComponent } from '../admin/admin/users/user-detail/user-detail.component';
+import { UsersTableComponent } from '../admin/admin/users/users-table/users-table.component';
+import { AddUserComponent } from '../admin/admin/users/add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -74,15 +77,29 @@ const routes: Routes = [
       },
       {
         path: 'users',
-        component: UsersComponent
+        component: UsersComponent,
+        children: [
+          {
+            path: '',
+            component: UsersTableComponent
+          },
+          {
+            path: 'add',
+            component: AddUserComponent
+          },
+          {
+            path: ':user-id',
+            component: UserDetailComponent
+          }
+        ]
       }
     ]
   },
-  {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '',
+  //   pathMatch: 'full'
+  // }
 ]
 
 

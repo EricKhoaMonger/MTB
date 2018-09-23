@@ -51,4 +51,24 @@ export class UserService {
       map((newUser: Response) => newUser.json())
     )
   }
+
+  updateUser(edittedUser: User): Observable<User> {
+    let url = 'http://sv2.myclass.vn/api/QuanLyNguoiDung/CapNhatThongTin';
+    let updateHeader = new Headers();
+    updateHeader.append('Content-Type', 'application/json; charset = utf-8');
+
+    return this._http.post(url, edittedUser, { headers: updateHeader }).pipe(
+      map((res: Response) => res.json())
+    )
+  }
+
+  // http://sv2.myclass.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=nguyenvana
+
+  removeUser(userId: string): Observable<any> {
+    let url = `http://sv2.myclass.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userId}`
+
+    return this._http.delete(url).pipe(
+      map((res: Response) => res.json())
+    )
+  }
 }

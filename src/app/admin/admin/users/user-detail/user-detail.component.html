@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row mt-5">
+
+    <div class="col-md-2">
+      <div class="profile-pic">
+        <img [src]="profilePic" alt="" class="img-fluid">
+      </div>
+    </div>
+
+
+    <div class="col-md-7 ml-md-auto">
+      <ng-container *ngIf="!needEditting; else editTemplate">
+        <h3 class="mb-3"><b>{{ userInfo?.HoTen }}</b></h3>
+        <div class="row">
+          <div class="col-4">
+            <p><b>User Id: </b></p>
+          </div>
+          <div class="col-8">
+            <p>{{ userInfo?.TaiKhoan }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p><b>User Password: </b></p>
+          </div>
+          <div class="col-8">
+            <p>{{ userInfo?.MatKhau }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p><b>Phone: </b></p>
+          </div>
+          <div class="col-8">
+            <p>{{ userInfo?.SoDT }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p><b>Email: </b></p>
+          </div>
+          <div class="col-8">
+            <p>{{ userInfo?.Email }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p><b>User Type: </b></p>
+          </div>
+          <div class="col-8">
+            <p>
+              <ng-container *ngIf="userInfo?.MaLoaiNguoiDung === 'KhachHang'; else elseTemplate">
+                User
+              </ng-container>
+              <ng-template #elseTemplate>
+                Admin
+              </ng-template>
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-12">
+            <button mat-raised-button color="primary" (click)="needEditting = true">Edit User</button>
+            <button mat-raised-button color="warn" (click)="removeUser(userInfo.TaiKhoan)">Remove User</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #editTemplate>
+      <app-edit-user-form [currentInfo]="userInfo"></app-edit-user-form>
+    </ng-template>
+  </div>
+</div>
