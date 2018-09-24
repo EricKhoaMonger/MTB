@@ -69,10 +69,9 @@ export class LoginComponent implements OnInit {
               } else {
                 console.log(this.prevPage);
                 
-                this.router.navigate['/']
+                this.router.navigate(['/'])
               }
             }, 1500);
-            // this.router.navigate['/']
           } else {
             this.alerts.setMessage(data, 'error')
           }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTranfererService } from '../../services/data-tranferer.service';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { User } from '../../models/user';
 
 
 @Component({
@@ -9,25 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  userInfo: any;
-  localUser:any;
+  userInfo: User;
+  localUser: any;
   constructor(
     public userInfoGetter: DataTranfererService,
-    private router:Router) { }
+    private router: Router) {
+    this.userInfoGetter.username$.subscribe(
+      data => {
+        if (data !== null) this.userInfo = data
+        else return
+      }
+    )
+  }
 
   ngOnInit() {
     this.localUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (this.localUser == null) {
-      this.userInfoGetter.username$.subscribe(
-        (data: any) => {
-          this.userInfo = data;          
-        },
-        (err: any) => console.log(err)
-      )
-    } else {
-      this.userInfo = this.localUser
-    };
-
+    if (this.localUser !== null) this.userInfo = this.localUser
+    else return
   }
 
   userSignOut() {

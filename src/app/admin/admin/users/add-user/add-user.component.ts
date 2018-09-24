@@ -5,7 +5,6 @@ import { UserService } from '../../../../services/user.service';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 import { Location } from '@angular/common';
-import { DataTranfererService } from '../../../../services/data-tranferer.service';
 
 @Component({
   selector: 'app-add-user',
@@ -17,7 +16,6 @@ export class AddUserComponent implements OnInit {
   addUserFormGroup: FormGroup
 
   constructor(
-    private dataTransferer: DataTranfererService,
     private fb: FormBuilder,
     private userService: UserService,
     public dialog: MatDialog,
@@ -41,7 +39,7 @@ export class AddUserComponent implements OnInit {
     })
   }
 
-  addUser(newUserInfo: any) {
+  addUser(newUserInfo: User) {
     console.log(newUserInfo);
     
     

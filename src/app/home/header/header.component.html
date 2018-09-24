@@ -23,7 +23,7 @@
             </li>
           </ul>
           <ul class="navbar-nav navbar-right navUl">
-            <li class="nav-item" *ngIf="userInfo == null || userInfo == undefined ; else userGreets">
+            <li class="nav-item" *ngIf="userInfo == null ; else userGreets">
               <a routerLink="/login" class="nav-link">
                 <i class="fa fa-user mr-3"></i>
                 <span>SIGN IN</span>
