@@ -5,6 +5,8 @@ import { MovieService } from '../../../../services/movie.service';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 import { DataTranfererService } from '../../../../services/data-tranferer.service';
 import { CreateMovieDialogComponent } from '../create-movie-dialog/create-movie-dialog.component'
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-movies-table',
@@ -12,7 +14,7 @@ import { CreateMovieDialogComponent } from '../create-movie-dialog/create-movie-
   styleUrls: ['./movies-table.component.scss'],
 })
 export class MoviesTableComponent implements OnInit {
-  displayedColumns: string[] = ['MaPhim', 'TenPhim', 'DanhGia', 'Action'];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Movie>;
   updatedMovie: Movie
 
@@ -24,7 +26,9 @@ export class MoviesTableComponent implements OnInit {
     private movieService: MovieService,
     public dialog: MatDialog,
     private dataReceiver: DataTranfererService,
-    private createdMovieReceiver: DataTranfererService
+    private createdMovieReceiver: DataTranfererService,
+    private breakpointObserver: BreakpointObserver,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -40,6 +44,16 @@ export class MoviesTableComponent implements OnInit {
 
         this.updatedMovie = updatedMovie
       }
+    )
+
+    this.breakpointObserver.observe(['(min-width:576px)']).subscribe(
+      ((state: BreakpointState) => {
+        if (state.matches) {
+          this.displayedColumns = ['MaPhim', 'TenPhim', 'DanhGia', 'Action']
+        } else {
+          this.displayedColumns = ['TenPhim', 'Action']
+        }
+      })
     )
   }
 
@@ -58,7 +72,7 @@ export class MoviesTableComponent implements OnInit {
   }
 
   openMovieDetailDialog(movie) {
-    
+
     let dialogRef = this.dialog.open(MovieDialogComponent, { data: movie });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,9 +93,20 @@ export class MoviesTableComponent implements OnInit {
     this.movieService.removeMovie(movie.MaPhim).subscribe(
       res => {
         if (res === 'Xóa phim thành công!') {
-          this.dataSource.data.splice(movieIndex, 1)
+          const dialogRef = this.matDialog.open(AlertDialogComponent, {
+            data: {
+              icon: 'check',
+              message: res
+            }
+          })
 
-          this.loadData(this.dataSource.data)
+          setTimeout(() => {
+            dialogRef.close()
+            this.dataSource.data.splice(movieIndex, 1)
+            this.loadData(this.dataSource.data)
+          }, 2000);
+
+
         }
       }
     )
@@ -97,6 +122,7 @@ export class MoviesTableComponent implements OnInit {
           movie => {
             this.dataSource.data.unshift(movie)
             this.loadData(this.dataSource.data)
+            this.paginator.firstPage()
           }
         )
       }
