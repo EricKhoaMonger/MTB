@@ -12,6 +12,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MovieDialogComponent } from './admin/admin/movies/movie-dialog/movie-dialog.component';
 import { CreateMovieDialogComponent } from './admin/admin/movies/create-movie-dialog/create-movie-dialog.component';
 import { AlertDialogComponent } from './admin/admin/alert-dialog/alert-dialog.component';
+import { AdminGuard } from './services/admin.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,6 @@ import { AlertDialogComponent } from './admin/admin/alert-dialog/alert-dialog.co
   ],
   entryComponents:[MovieDialogComponent,CreateMovieDialogComponent,AlertDialogComponent],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
