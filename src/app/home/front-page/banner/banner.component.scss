@@ -1,0 +1,10 @@
+.banner-wrapper {
+  height: 80vh;
+  overflow: hidden;
+}
+
+@media screen and (max-width:576px) {
+    .banner-wrapper {
+        height: 50vh;
+      }
+}

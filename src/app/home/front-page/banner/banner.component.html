@@ -1,7 +1,7 @@
 <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
 
   <mdb-carousel-item *ngFor="let banner of banners">
-    <div class="view w-100">
+    <div class="view w-100 black banner-wrapper">
       <app-banner-item [banner]="banner"></app-banner-item>
     </div>
   </mdb-carousel-item>
