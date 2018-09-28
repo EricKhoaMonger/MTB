@@ -40,9 +40,6 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser(newUserInfo: User) {
-    console.log(newUserInfo);
-    
-    
     this.userService.signUp(newUserInfo).subscribe(
       (res: any) => { console.log(res);
       
@@ -70,5 +67,9 @@ export class AddUserComponent implements OnInit {
       },
       (err: any) => console.log(err)
     )
+  }
+
+  cancelAdding(){
+    this.location.back()
   }
 }

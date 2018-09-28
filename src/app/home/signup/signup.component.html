@@ -33,7 +33,6 @@
           <input type="password" id="MatKhau2" class="form-control" formControlName="MatKhau2" mdbInputDirective>
           <label for="MatKhau2">Confirm password</label>
         </div>
-        <p class="lead text-secondary">{{f.MatKhau2.className}}</p>
         <div *ngIf="f.MatKhau2.errors && (f.MatKhau2.touched || f.MatKhau2.dirty)">
           <span *ngIf="f.MatKhau2.errors.required"> Confirm Password is REQUIRED </span>
           <span *ngIf="!f.MatKhau2.errors.required && f.MatKhau2.errors.notMatch">Passwords are not the same</span>

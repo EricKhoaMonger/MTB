@@ -24,7 +24,7 @@
 
         <div class="row align-items-center">
           <label class="col-4"><b>Released Day:</b></label>
-          <input class="form-control col-8" [value]=" data.NgayKhoiChieu | date:short " [readonly]="!needEditting"
+          <input class="form-control col-8" [value]=" data.NgayKhoiChieu | date:'dd/MM/yyyy' " [readonly]="!needEditting"
             formControlName="NgayKhoiChieu">
         </div>
 
@@ -63,7 +63,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button type="button" mat-raised-button color="primary" (click)="editMovie(data)" [hidden]="needEditting">Edit</button>
+  <button type="button" mat-raised-button color="primary" (click)="editMovie()" [hidden]="needEditting">Edit</button>
   <button type="button" mat-raised-button color="primary" (click)="confirmEditting(movieFormGroup.value, file?.files)" [hidden]="!needEditting" >Update</button>
   <button type="button" mat-raised-button color="warn" [mat-dialog-close]="false">Cancel</button>
 </mat-dialog-actions>

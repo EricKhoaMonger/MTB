@@ -8,7 +8,7 @@
           <img [src]="movieDetail?.HinhAnh" alt="" class="img-fluid ml-md-auto mb-3 mb-md-0 border border-warning d-none d-md-block">
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center animated fadeInRight">
-          <p class="lead text-light">{{ movieDetail?.NgayKhoiChieu | date:short }}</p>
+          <p class="lead text-light">{{ movieDetail?.NgayKhoiChieu | date:'dd/MM/yyyy' }}</p>
           <h3 class="text-warning"><b>{{ movieDetail?.TenPhim }}</b></h3>
           <p class="lead text-light">120 minutes - IMAX/3D/2D</p>
 
