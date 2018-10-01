@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { BookingService } from '../../../services/booking.service';
-import { AlertsService } from 'angular-alert-module';
 
 @Component({
   selector: 'app-seats',
@@ -22,8 +21,8 @@ export class SeatsComponent implements OnInit, OnChanges, OnDestroy {
   availables: number = 0;
 
   onChoosingSeatsArr: any[] = [];
-  totalCost: number = 0;
-  totalComboCost: number = 0;
+  totalCost: number;
+  totalComboCost: number;
 
   private scheduleSub: Subscription
   private costsSub: Subscription
@@ -32,11 +31,12 @@ export class SeatsComponent implements OnInit, OnChanges, OnDestroy {
     private scheduleInfoReceiver: DataTranfererService,
     private costsReceiver: DataTranfererService,
     private router: Router,
-    private bookingService: BookingService,
-    private alerts: AlertsService
+    private bookingService: BookingService
   ) { }
 
   ngOnInit() {
+    this.totalComboCost = 0;
+    this.totalCost = 0;
     this.scheduleObj = JSON.parse(localStorage.getItem('scheduleObj'));
     this.localUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -102,31 +102,31 @@ export class SeatsComponent implements OnInit, OnChanges, OnDestroy {
       TaiKhoanNguoiDung: this.localUser.TaiKhoan,
       DanhSachVe: newList
     }
+    if (bookingInfo.DanhSachVe.length && bookingInfo.DanhSachVe.length > 0) {
+      this.bookingService.finishBooking(bookingInfo).subscribe(
+        (res: any) => {
+          let cost = this.totalComboCost + this.totalCost
+          localStorage.setItem(
+            'bookingInfo', JSON.stringify(bookingInfo)
+          )
+          localStorage.setItem(
+            'cost', JSON.stringify(cost)
+          )
 
-    this.bookingService.finishBooking(bookingInfo).subscribe(
-      (res: any) => {
-        console.log(`
-        ${res}
-        Total Cost: ${this.totalCost + this.totalComboCost}`)
-        this.alerts.setMessage(
-          `Successfully booked tickets !
-          Thanks for choosing MTB <3
-        `, 'success')
-        localStorage.setItem(
-          'message',
-          `${res}
-          Total Cost: ${this.totalCost + this.totalComboCost}`
-        )
-        setTimeout(() => {
-          this.router.navigate(['/done', this.scheduleObj.MaLichChieu])
-        }, 1000);
-      },
-      (err: any) => console.log(err)
-    )
+          setTimeout(() => {
+            this.router.navigate(['/done', this.scheduleObj.MaLichChieu])
+          }, 1000);
+        },
+        (err: any) => console.log(err)
+      )
+    } else return
+    
+    
   }
 
   ngOnDestroy() {
     this.totalComboCost = 0;
+    this.totalCost = 0;
     localStorage.removeItem('scheduleObj');
     this.scheduleSub.unsubscribe();
     this.costsSub.unsubscribe()

@@ -53,7 +53,6 @@ export class CombosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.totalCost = 0;
-    console.log(this.totalCost);
     
     this.costSub.unsubscribe();
   }
