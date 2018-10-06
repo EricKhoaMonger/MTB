@@ -5823,11 +5823,11 @@ var BookingService = /** @class */ (function () {
         this.http = http;
     }
     BookingService.prototype.getSeats = function (id) {
-        var url = "https://sv2.myclass.vn/api/QuanLyPhim/ChiTietPhongVe?MaLichChieu=" + id;
+        var url = "http://sv2.myclass.vn/api/QuanLyPhim/ChiTietPhongVe?MaLichChieu=" + id;
         return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data.json(); }));
     };
     BookingService.prototype.finishBooking = function (bookingInfo) {
-        var url = 'https://sv2.myclass.vn/api/QuanLyDatVe/DatVe';
+        var url = 'http://sv2.myclass.vn/api/QuanLyDatVe/DatVe';
         var bookingHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         bookingHeader.append('Content-Type', 'application/json;charset=utf-8');
         return this.http.post(url, bookingInfo, { headers: bookingHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
@@ -6026,35 +6026,35 @@ var MovieService = /** @class */ (function () {
         this._http = _http;
     }
     MovieService.prototype.getNowShowings = function () {
-        var url = 'https://sv2.myclass.vn/api/QuanLyPhim/LayDanhSachPhim?MaNhom=GP01';
+        var url = 'http://sv2.myclass.vn/api/QuanLyPhim/LayDanhSachPhim?MaNhom=GP01';
         return this._http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data.json(); }));
     };
     MovieService.prototype.getComingSoons = function () {
-        var url = 'https://sv2.myclass.vn/api/QuanLyPhim/LayDanhSachPhim?MaNhom=GP08';
+        var url = 'http://sv2.myclass.vn/api/QuanLyPhim/LayDanhSachPhim?MaNhom=GP08';
         return this._http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data.json(); }));
     };
     MovieService.prototype.getMovieDetail = function (id) {
-        var url = "https://sv2.myclass.vn/api/QuanLyPhim/LayChiTietPhim?MaPhim=" + id;
+        var url = "http://sv2.myclass.vn/api/QuanLyPhim/LayChiTietPhim?MaPhim=" + id;
         return this._http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data.json(); }));
     };
     MovieService.prototype.createMovie = function (movie) {
-        var url = 'https://sv2.myclass.vn/api/QuanLyPhim/ThemPhimMoi';
+        var url = 'http://sv2.myclass.vn/api/QuanLyPhim/ThemPhimMoi';
         var createMovieHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         createMovieHeader.append('Content-Type', 'application/json; charser=utf-8');
         return this._http.post(url, movie, { headers: createMovieHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     MovieService.prototype.removeMovie = function (movieId) {
-        var url = "https://sv2.myclass.vn/api/QuanLyPhim/XoaPhim?MaPhim=" + movieId;
+        var url = "http://sv2.myclass.vn/api/QuanLyPhim/XoaPhim?MaPhim=" + movieId;
         return this._http.delete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     MovieService.prototype.updateMovie = function (movie) {
-        var url = 'https://sv2.myclass.vn/api/QuanLyPhim/CapNhatPhim';
+        var url = 'http://sv2.myclass.vn/api/QuanLyPhim/CapNhatPhim';
         var updateHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         updateHeader.append('Content-Type', 'application/json; charser=utf-8');
         return this._http.post(url, movie, { headers: updateHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     MovieService.prototype.uploadFile = function (file, movieTitle) {
-        var url = 'https://sv2.myclass.vn/api/QuanLyPhim/UploadFile';
+        var url = 'http://sv2.myclass.vn/api/QuanLyPhim/UploadFile';
         var formData = new FormData();
         formData.append('Files', file);
         formData.append('TenPhim', movieTitle);
@@ -6103,11 +6103,11 @@ var UserService = /** @class */ (function () {
         this._http = _http;
     }
     UserService.prototype.getUsersList = function () {
-        var usersApi = 'https://sv2.myclass.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01';
+        var usersApi = 'http://sv2.myclass.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01';
         return this._http.get(usersApi).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (users) { return users.json(); }));
     };
     UserService.prototype.getIdList = function () {
-        var usersApi = 'https://sv2.myclass.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01';
+        var usersApi = 'http://sv2.myclass.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01';
         return this._http.get(usersApi).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) {
             var users = data.json();
             var IdArr = users.map(function (user) { return user.TaiKhoan; });
@@ -6115,26 +6115,26 @@ var UserService = /** @class */ (function () {
         }));
     };
     UserService.prototype.logIn = function (id, pass) {
-        var url = "https://sv2.myclass.vn/api/QuanLyNguoiDung/DangNhap?taikhoan=" + id + "&matkhau=" + pass;
+        var url = "http://sv2.myclass.vn/api/QuanLyNguoiDung/DangNhap?taikhoan=" + id + "&matkhau=" + pass;
         var logInHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         logInHeader.append('Content-Type', 'application/json;charset=UTF-8');
         return this._http.post(url, { Headers: logInHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data.json(); }));
     };
     UserService.prototype.signUp = function (user) {
-        var url = "https://sv2.myclass.vn/api/QuanLyNguoiDung/ThemNguoiDung";
+        var url = "http://sv2.myclass.vn/api/QuanLyNguoiDung/ThemNguoiDung";
         var signUpHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         signUpHeader.append('Content-Type', 'application/json;charset=UTF-8');
         return this._http.post(url, user, { headers: signUpHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (newUser) { return newUser.json(); }));
     };
     UserService.prototype.updateUser = function (edittedUser) {
-        var url = 'https://sv2.myclass.vn/api/QuanLyNguoiDung/CapNhatThongTin';
+        var url = 'http://sv2.myclass.vn/api/QuanLyNguoiDung/CapNhatThongTin';
         var updateHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         updateHeader.append('Content-Type', 'application/json; charset = utf-8');
         return this._http.post(url, edittedUser, { headers: updateHeader }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     // http://sv2.myclass.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=nguyenvana
     UserService.prototype.removeUser = function (userId) {
-        var url = "https://sv2.myclass.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=" + userId;
+        var url = "http://sv2.myclass.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=" + userId;
         return this._http.delete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     UserService = __decorate([
