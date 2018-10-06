@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     public dataTrans: DataTranfererService,
     private router: Router,
-    private alerts: AlertsService,
+    public alerts: AlertsService,
     private authsService: AuthsService
   ) {
     this.logInForm = fb.group({

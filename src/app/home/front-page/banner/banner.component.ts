@@ -8,11 +8,11 @@ declare var $: any;
 })
 export class BannerComponent implements OnInit {
 
-  banners:any[] =[
-    {url:'https://i.ytimg.com/vi/2VINv0jkmaE/maxresdefault.jpg'},
-    {url:'https://i0.wp.com/vuviphim.com/wp-content/uploads/2018/08/M%C3%A8o-M%E1%BA%ADp-%C4%90i-Ph%C6%B0%E1%BB%A3t-Cats-and-Peachtopia-2018-1.jpg?resize=750%2C463&ssl=1'},
-    {url:'http://image.plo.vn/w653/Uploaded/2018/wopsvun/2018_08_08/hoan-doi_emah.jpg'},
-    {url:'https://cdn.empireonline.com/jpg/70/0/0/1280/960/aspectfit/0/0/0/0/0/0/c/articles/5afc73508a8b8a97068a20b8/equalizer-2-exclusive-quad.jpg'}
+  banners: any[] = [
+    { url: 'https://pre00.deviantart.net/e3e0/th/pre/f/2012/165/2/f/deadpool___2014_teaser_movie_banner_by_crustydog-d53hucm.jpg' },
+    { url: 'https://1.bp.blogspot.com/-NKM75UnAN60/Wt69l0Nt1pI/AAAAAAAA8nM/0KbPv3Ct008_UfGsAOpKA5Mn2MWEErusQCLcBGAs/s1600/Marvel%2527s%2BVenom%2BTeaser%2BOne%2BSheet%2BMovie%2BPoster.png' },
+    { url: 'http://cdn.collider.com/wp-content/uploads/the-avengers-movie-poster-banners-04.jpg' },
+    { url: 'https://i.imgur.com/rD8Unfk.jpg' }
   ]
 
   constructor() { }
@@ -21,12 +21,12 @@ export class BannerComponent implements OnInit {
     setTimeout(() => {
       $('.home-banner').owlCarousel({
         loop: true,
-        nav:true,
+        nav: true,
         dots: true,
         responsive: {
           0: {
             items: 1,
-            nav:false,
+            nav: false,
             dots: false,
           },
           600: {

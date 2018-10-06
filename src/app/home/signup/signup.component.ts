@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     public fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private alerts: AlertsService
+    public alerts: AlertsService
   ) {
 
   }

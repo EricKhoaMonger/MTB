@@ -3,7 +3,6 @@ import { User } from '../../../models/user';
 import { WOW } from 'wowjs'
 import { DataTranfererService } from '../../../services/data-tranferer.service';
 import * as moment from 'moment';
-import { AlertsService } from 'angular-alert-module';
 
 @Component({
   selector: 'app-review-detail',
@@ -19,8 +18,7 @@ export class ReviewDetailComponent implements OnInit {
   localUser: User;
 
   constructor(
-    private starTransferer: DataTranfererService,
-    private alerts:AlertsService
+    private starTransferer: DataTranfererService
   ) {
   }
 
